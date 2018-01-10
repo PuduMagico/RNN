@@ -5,9 +5,9 @@ import numpy as np
 def main():
     rnn = net.net(0.01)
 
-    rnn.add_layer(20)
-#   rnn.add_layer(3)
-#    rnn.add_layer(1)
+    rnn.add_layer(5)
+    rnn.add_layer(5)
+    rnn.add_layer(5)
 
     rnn.close_cycle()
     rnn.connect_layers()
@@ -27,15 +27,14 @@ def main():
              neuron_counter += 1
         print "----------"
 
-
-
-    max_iters = 5
+    max_iters = 1
     for i in range(max_iters):
         rnn.one_cycle()
         rnn.update_weights_net()
 
     layer1_initial_activity = rnn.layers[0].last_output
-    # layer2_activity = rnn.layers[1].last_output
+    layer2_initial_activity = rnn.layers[1].last_output
+    layer3_initial_activity = rnn.layers[2].last_output
 
 
     print " ************************************* "
@@ -57,7 +56,7 @@ def main():
     #
     # print " ************************************* "
 
-    max_iters = 10000
+    max_iters = 500
     for i in range(max_iters):
         rnn.one_cycle()
         rnn.update_weights_net()
@@ -85,20 +84,27 @@ def main():
 
     print "plot section"
     layer1_final_activity = rnn.layers[0].last_output
+    layer2_final_activity = rnn.layers[1].last_output
+    layer3_final_activity = rnn.layers[2].last_output
 
 
-    plt.subplot(2, 1, 1)
-    x = np.linspace(0,1,20)
-    plt.plot(x,layer1_initial_activity, label ="initial activity")
-    plt.plot(x,layer1_final_activity, label ="final activity")
+    # plt.subplot(2, 1, 1)
+    x = np.linspace(1,5,num = 5)
+    plt.plot(x,layer1_initial_activity, '--', label ="initial activity layer 1")
+    plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
+    plt.plot(x,layer3_initial_activity, '--', label ="initial activity layer 3")
+    plt.plot(x,layer1_final_activity, '-', label ="final activity layer 1")
+    plt.plot(x,layer2_final_activity, '-', label ="final activity layer 2")
+    plt.plot(x,layer3_final_activity, '-', label ="final activity layer 3")
     plt.xlabel('Neuronas')
     plt.ylabel('Actividad')
 
     plt.title("test")
     plt.legend()
 
-    plt.subplot(2, 1, 2)
-    plt.pcolormesh(final_weights)
+    # plt.subplot(2, 1, 2)
+    # plt.pcolormesh(final_weights)
+    # plt.axis([1,5,1,5])
 
     plt.show()
     print "the end"

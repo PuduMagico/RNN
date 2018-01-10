@@ -6,7 +6,7 @@ class layer:
     def __init__(self, n_neurons, alpha):
         self.neurons = []
         for i in range(n_neurons):
-            bias = random.uniform(0,1)
+            bias = 0
             activity = random.uniform(0,1)
             new_neuron = neuron.neuron(bias, activity, alpha)
             self.neurons.append(new_neuron)
@@ -23,10 +23,10 @@ class layer:
         for neuron in self.neurons:
             neuron.set_weights(n_previous_neurons)
 
-    def feed(self, impulse):
+    def feed(self, activity):
         output = []
         for neuron in self.neurons:
-            z = neuron.output(impulse)
+            z = neuron.output(activity)
             output.append(z)
         self.last_output = output
 
