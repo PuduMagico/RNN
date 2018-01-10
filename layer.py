@@ -5,9 +5,11 @@ import neuron
 class layer:
     def __init__(self, n_neurons, alpha):
         self.neurons = []
+        self.last_output = []
         for i in range(n_neurons):
             bias = 0
             activity = random.uniform(0,1)
+            self.last_output.append(activity)
             new_neuron = neuron.neuron(bias, activity, alpha)
             self.neurons.append(new_neuron)
         self.n_neurons = n_neurons
@@ -15,8 +17,6 @@ class layer:
         self.is_first = False
         self.previous_layer = False
         self.next_layer = False
-
-        self.last_output = []
         self.avg_activity = 0
 
     def connect_neurons(self, n_previous_neurons):
