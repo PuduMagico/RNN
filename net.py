@@ -1,4 +1,5 @@
 import layer
+import random
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -82,18 +83,21 @@ class net:
         plt.show()
 
     # Se puso dificil
-    # def plot_neuron_activity_time(self, iters):
-    #     num_layers = len(self.layers)
-    #     max_num_neurons = 0
-    #     for i in range(num_layers):
-    #         if max_num_neurons < len(self.layers[i].neurons):
-    #             max_num_neurons = len(self.layers[i].neurons)
-    #
-    #     x = np.linspace(0,iters,num = iters + 1)
-    #     for i in range(num_layers*max_num_neurons):
-    #         plt.subplot(num_layers, max_num_neurons, i+1)
-    #         for j in range(len(self.layers[j].neurons)):
-    #
+    def plot_neuron_activity_time(self, iters):
+        num_layers = len(self.layers)
+        x = np.linspace(0,iters,num=iters+1)
+        for i in range(num_layers):
+            num_neurons = len(self.layers[i].neurons)
+            for j in range(3):
+                rand_num = random.randint(0,num_neurons-1)
+                plt.subplot(1,3,j+1)
+                plt.plot(x,self.layers[i].neurons[rand_num].activity_log)
+                plt.ylabel('Actividad')
+                plt.xlabel('Iteracion')
+                title = 'Actividad Neurona ' + str(rand_num) + " Layer " + str(i)
+                plt.title(title)
+            plt.tight_layout()
+            plt.show()
 
     def plot_neuron_activity_summary(self):
         num_layers = len(self.layers)
@@ -112,6 +116,15 @@ class net:
         plt.tight_layout()
         plt.show()
 
-
     def summarize_info(self):
-        pass
+        print "Resumen de la red"
+        print "Numero de capas: " + str(len(self.layers))
+        for i in range(len(self.layers)):
+            print "-------------"
+            print "Numero de neuronas en capa " + str(i) + " : " + str(len(self.layers[i].neurons))
+            print "Actividad"
+            print self.layers[i].last_output
+            print "Actividad Promedio"
+            print self.layers[i].avg_activity
+            print "Pesos de cada neurona"
+            print self.layers[i].show_neuron_weights()

@@ -15,35 +15,26 @@ from matplotlib.ticker import MultipleLocator
 def main():
     rnn = net.net(100)
 
-    rnn.add_layer(40)
-    rnn.add_layer(40)
-    rnn.add_layer(40)
+    rnn.add_layer(10)
+    rnn.add_layer(10)
+    rnn.add_layer(10)
 
     rnn.close_cycle()
     rnn.connect_layers()
 
-    print "Resumen de la red inicial"
-    print "numero de capas: " + str(len(rnn.layers))
-    print "-------------"
-    print rnn.layers[0].last_output
-    print rnn.layers[0].show_neuron_weights()
-
-    print "----------"
+    rnn.summarize_info()
 
     iters = 100
     for i in range(iters):
         rnn.one_cycle()
         rnn.update_weights_net()
 
-    print "----------"
+    rnn.summarize_info()
 
-    print "Resumen de la red final"
-    print rnn.layers[0].last_output
-    print rnn.layers[0].show_neuron_weights()
-
-    rnn.plot_activity_histogram()
-    rnn.plot_neuron_activity_summary()
-    rnn.pcolormesh_weights()
+    # rnn.plot_activity_histogram()
+    # rnn.plot_neuron_activity_summary()
+    # rnn.pcolormesh_weights()
+    # rnn.plot_neuron_activity_time(iters)
 
 
     print "the end"

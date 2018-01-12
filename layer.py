@@ -33,7 +33,7 @@ class layer:
         sum_activity = 0
         for neuron in self.neurons:
             sum_activity += neuron.activity
-        self.avg_activity = sum_activity/self.n_neurons
+        self.avg_activity = sum_activity/(self.n_neurons*1.0)
 
         if self.next_layer.is_first:
             pass
