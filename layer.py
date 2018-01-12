@@ -47,3 +47,7 @@ class layer:
     def show_neuron_weights(self):
         for neuron in self.neurons:
             print neuron.weights
+
+    def add_activity_noise(self, noise):
+        for neuron in self.neurons:
+            neuron.add_activity_noise(noise)

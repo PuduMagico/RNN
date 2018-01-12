@@ -13,6 +13,10 @@ class neuron:
     def output(self, previous_layer_activity):
         z = np.add(sum(np.multiply(self.weights, previous_layer_activity)), self.bias)
         new_activity = 1/(1+np.exp(-z))
+        if new_activity < 0.0001:
+            new_activity = 0
+        elif new_activity > 0.9999:
+            new_activity = 1
         self.activity_log.append(new_activity)
         # new_activity = z
         self.activity = new_activity
@@ -33,3 +37,7 @@ class neuron:
             delta_array.append(delta)
             self.weights[i] = self.weights[i] - (self.weights[i] - self.alpha*delta)/100
         self.delta_log.append(delta_array)
+
+    def add_activity_noise(self, noise):
+        self.activity += np.random.normal(0,noise)
+         
