@@ -32,7 +32,7 @@ if __name__ == "__main__":
     print "pesos iniciales"
     print wK
 
-    for i in range(10):
+    for i in range(100):
         wA = AC(wK, wA, wP, 1)
         wK = plasticity(wK,wA,100,n_neurons)
     # print "actividad de patada inicial"

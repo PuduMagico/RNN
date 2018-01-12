@@ -15,9 +15,9 @@ from matplotlib.ticker import MultipleLocator
 def main():
     rnn = net.net(100)
 
-    rnn.add_layer(3)
-    # rnn.add_layer(5)
-    # rnn.add_layer(5)
+    rnn.add_layer(40)
+    rnn.add_layer(40)
+    rnn.add_layer(40)
 
     rnn.close_cycle()
     rnn.connect_layers()
@@ -139,14 +139,14 @@ def main():
     sum_delta_log = []
 
 
-    for i in range(iters-1):
-        sum_delta = 0
-        for j in range(3):
-            sum_delta += sum(rnn.layers[0].neurons[j].delta_log[i])
-        sum_delta_log.append(sum_delta)
+    # for i in range(iters-1):
+    #     sum_delta = 0
+    #     for j in range(3):
+    #         sum_delta += sum(rnn.layers[0].neurons[j].delta_log[i])
+    #     sum_delta_log.append(sum_delta)
 
 
-    plt.subplot(4, 1, 1)
+    plt.subplot(3, 3, 1)
     x = np.linspace(0,iters,num = iters + 1)
     plt.plot(x,rnn.layers[0].neurons[0].activity_log, '--', label ="activityg")
     # plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
@@ -158,9 +158,9 @@ def main():
     plt.ylabel('Actividad')
 
     plt.title("Actividad Neurona 1")
-    plt.legend()
+    # plt.legend()
 
-    plt.subplot(4, 1, 2)
+    plt.subplot(3, 3, 2)
     plt.plot(x,rnn.layers[0].neurons[1].activity_log, '--', label ="activity")
     # plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
     # plt.plot(x,layer3_initial_activity, '--', label ="initial activity layer 3")
@@ -171,9 +171,9 @@ def main():
     plt.ylabel('Actividad')
 
     plt.title("Actividad Neurona 2")
-    plt.legend()
+    # plt.legend()
 
-    plt.subplot(4, 1, 3)
+    plt.subplot(3, 3, 3)
     plt.plot(x,rnn.layers[0].neurons[2].activity_log, '--', label ="activity")
     # plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
     # plt.plot(x,layer3_initial_activity, '--', label ="initial activity layer 3")
@@ -184,16 +184,99 @@ def main():
     plt.ylabel('Actividad')
 
     plt.title("Actividad Neurona 3")
-    plt.legend()
+    # plt.legend()
 
-    plt.subplot(4, 1, 4)
-    x = np.linspace(0,iters,num = iters-1)
-    plt.plot(x,sum_delta_log, '--', label ="delta")
+    # plt.subplot(4, 1, 4)
+    # x = np.linspace(0,iters,num = iters-1)
+    # plt.plot(x,sum_delta_log, '--', label ="delta")
+    # plt.xlabel('Iteracion')
+    # plt.ylabel('Suma de Deltas')
+    #
+    # plt.title("Deltas")
+    # plt.legend()
+
+    plt.subplot(3, 3, 4)
+    x = np.linspace(0,iters,num = iters + 1)
+    plt.plot(x,rnn.layers[1].neurons[0].activity_log, '--', label ="activityg")
+    # plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
+    # plt.plot(x,layer3_initial_activity, '--', label ="initial activity layer 3")
+    # plt.plot(x,layer1_final_activity, '-', label ="final activity layer 1")
+    # plt.plot(x,layer2_final_activity, '-', label ="final activity layer 2")
+    # plt.plot(x,layer3_final_activity, '-', label ="final activity layer 3")
     plt.xlabel('Iteracion')
-    plt.ylabel('Suma de Deltas')
+    plt.ylabel('Actividad')
 
-    plt.title("Deltas")
-    plt.legend()
+    plt.title("Actividad Neurona 1")
+    # plt.legend()
+
+    plt.subplot(3, 3, 5)
+    plt.plot(x,rnn.layers[1].neurons[1].activity_log, '--', label ="activity")
+    # plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
+    # plt.plot(x,layer3_initial_activity, '--', label ="initial activity layer 3")
+    # plt.plot(x,layer1_final_activity, '-', label ="final activity layer 1")
+    # plt.plot(x,layer2_final_activity, '-', label ="final activity layer 2")
+    # plt.plot(x,layer3_final_activity, '-', label ="final activity layer 3")
+    plt.xlabel('Iteracion')
+    plt.ylabel('Actividad')
+
+    plt.title("Actividad Neurona 2")
+    # plt.legend()
+
+    plt.subplot(3, 3, 6)
+    plt.plot(x,rnn.layers[1].neurons[2].activity_log, '--', label ="activity")
+    # plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
+    # plt.plot(x,layer3_initial_activity, '--', label ="initial activity layer 3")
+    # plt.plot(x,layer1_final_activity, '-', label ="final activity layer 1")
+    # plt.plot(x,layer2_final_activity, '-', label ="final activity layer 2")
+    # plt.plot(x,layer3_final_activity, '-', label ="final activity layer 3")
+    plt.xlabel('Iteracion')
+    plt.ylabel('Actividad')
+
+    plt.title("Actividad Neurona 3")
+    # plt.legend()
+
+
+    plt.subplot(3, 3, 7)
+    x = np.linspace(0,iters,num = iters + 1)
+    plt.plot(x,rnn.layers[2].neurons[0].activity_log, '--', label ="activityg")
+    # plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
+    # plt.plot(x,layer3_initial_activity, '--', label ="initial activity layer 3")
+    # plt.plot(x,layer1_final_activity, '-', label ="final activity layer 1")
+    # plt.plot(x,layer2_final_activity, '-', label ="final activity layer 2")
+    # plt.plot(x,layer3_final_activity, '-', label ="final activity layer 3")
+    plt.xlabel('Iteracion')
+    plt.ylabel('Actividad')
+
+    plt.title("Actividad Neurona 1")
+    # plt.legend()
+
+    plt.subplot(3, 3, 8)
+    plt.plot(x,rnn.layers[2].neurons[1].activity_log, '--', label ="activity")
+    # plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
+    # plt.plot(x,layer3_initial_activity, '--', label ="initial activity layer 3")
+    # plt.plot(x,layer1_final_activity, '-', label ="final activity layer 1")
+    # plt.plot(x,layer2_final_activity, '-', label ="final activity layer 2")
+    # plt.plot(x,layer3_final_activity, '-', label ="final activity layer 3")
+    plt.xlabel('Iteracion')
+    plt.ylabel('Actividad')
+
+    plt.title("Actividad Neurona 2")
+    # plt.legend()
+
+    plt.subplot(3, 3, 9)
+    plt.plot(x,rnn.layers[2].neurons[2].activity_log, '--', label ="activity")
+    # plt.plot(x,layer2_initial_activity, '--', label ="initial activity layer 2")
+    # plt.plot(x,layer3_initial_activity, '--', label ="initial activity layer 3")
+    # plt.plot(x,layer1_final_activity, '-', label ="final activity layer 1")
+    # plt.plot(x,layer2_final_activity, '-', label ="final activity layer 2")
+    # plt.plot(x,layer3_final_activity, '-', label ="final activity layer 3")
+    plt.xlabel('Iteracion')
+    plt.ylabel('Actividad')
+
+    plt.title("Actividad Neurona 3")
+    # plt.legend()
+
+
 
 
     # plt.subplot(2, 1, 2)
