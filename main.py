@@ -22,20 +22,30 @@ def main():
     rnn.close_cycle()
     rnn.connect_layers()
 
-    rnn.summarize_info()
+    # rnn.summarize_info()
 
     iters = 100
     for i in range(iters):
         rnn.one_cycle()
         rnn.update_weights_net()
 
-    rnn.summarize_info()
+    # rnn.summarize_info()
 
     # rnn.plot_activity_histogram()
-    # rnn.plot_neuron_activity_summary()
+    rnn.plot_neuron_activity_summary()
     # rnn.pcolormesh_weights()
     # rnn.plot_neuron_activity_time(iters)
 
+    rnn.add_activity_noise(0.5)
+
+    rnn.plot_neuron_activity_summary()
+
+    iters = 10
+    for i in range(iters):
+        rnn.one_cycle()
+        rnn.update_weights_net()
+
+    rnn.plot_neuron_activity_summary()
 
     print "the end"
 
