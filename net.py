@@ -23,7 +23,6 @@ class net:
     #Funcion que conecta todas las capas de manera consecutiva.
     #La capa final se conecta con la primera
     def connect_layers(self):
-
         for layer in self.layers:
             n_previous_neurons = layer.previous_layer.n_neurons
             layer.connect_neurons(n_previous_neurons)

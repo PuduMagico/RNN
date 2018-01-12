@@ -13,7 +13,7 @@ from matplotlib.collections import LineCollection
 from matplotlib.ticker import MultipleLocator
 
 def main():
-    rnn = net.net(0.01)
+    rnn = net.net(100)
 
     rnn.add_layer(3)
     # rnn.add_layer(5)
@@ -28,10 +28,12 @@ def main():
 
     #
     #
-    #
-    # print "Resumen de la red inicial"
-    # print "numero de capas: " + str(len(rnn.layers))
-    # print "-------------"
+
+    print "Resumen de la red inicial"
+    print "numero de capas: " + str(len(rnn.layers))
+    print "-------------"
+    print rnn.layers[0].last_output
+    print rnn.layers[0].show_neuron_weights()
     # for i in range(len(rnn.layers)):
     #     print 'la capa numero ' + str(i) + " " + 'tiene ' + str(rnn.layers[i].n_neurons) + " " + "neuronas"
     #     print "Output inicial de la capa (actividad)"
@@ -52,8 +54,8 @@ def main():
     #          # for weight in neuron.weights:
     #          #     print str(weight)
     #          neuron_counter += 1
-    #     print "----------"
-    #
+    print "----------"
+
     # max_iters = 1
     # for i in range(max_iters):
     #     for j in range(len(rnn.layers[0].neurons)):
@@ -75,7 +77,9 @@ def main():
     # print " ************************************* "
     #
 
-    iters = 1000
+    # rnn.kickstarter()
+
+    iters = 10
 
     for i in range(iters):
         rnn.one_cycle()
@@ -104,7 +108,10 @@ def main():
     #     rnn.one_cycle()
     #     rnn.update_weights_net()
     #
-    # print "Resumen de la red final"
+    print "Resumen de la red final"
+
+    print rnn.layers[0].last_output
+    print rnn.layers[0].show_neuron_weights()
     #
     # final_weights = []
     # for i in range(len(rnn.layers)):

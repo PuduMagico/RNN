@@ -19,9 +19,9 @@ class neuron:
         return self.activity
 
     #Inicializacion de Pesos
-    #https://isaacchanghau.github.io/2017/05/24/Weight-Initialization-in-Artificial-Neural-Networks/
     def set_weights(self, n_previous_neurons):
-        self.weights = np.random.uniform(-1/np.sqrt(n_previous_neurons),1/np.sqrt(n_previous_neurons),n_previous_neurons)
+        # self.weights = np.random.uniform(-1/np.sqrt(n_previous_neurons),1/np.sqrt(n_previous_neurons),n_previous_neurons)
+        self.weights = np.random.uniform(-1,1,n_previous_neurons)
 
     #Actualizacion de Pesos
     #Toma como parametros el promedio de actividad en la capa, el promedio de actividad en la capa anterior
@@ -29,7 +29,7 @@ class neuron:
     def update_weights_neuron(self, self_avg_activity, previous_avg_activity, previous_layer_output):
         delta_array = []
         for i in range(len(self.weights)):
-            delta = np.multiply((self.activity - 0), (previous_layer_output[i] - 0))
+            delta = np.multiply((self.activity - self_avg_activity), (previous_layer_output[i] - previous_avg_activity))
             delta_array.append(delta)
             self.weights[i] = self.weights[i] - (self.weights[i] - self.alpha*delta)/100
         self.delta_log.append(delta_array)

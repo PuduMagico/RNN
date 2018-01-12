@@ -8,7 +8,7 @@ class layer:
         self.last_output = []
         for i in range(n_neurons):
             bias = 0
-            activity = random.uniform(0,1)
+            activity = np.divide(np.add(np.random.uniform(-1,1),1),10)
             self.last_output.append(activity)
             new_neuron = neuron.neuron(bias, activity, alpha)
             self.neurons.append(new_neuron)
@@ -43,3 +43,7 @@ class layer:
     def update_weights_layer(self):
         for neuron in self.neurons:
             neuron.update_weights_neuron(self.avg_activity, self.previous_layer.avg_activity, self.previous_layer.last_output)
+
+    def show_neuron_weights(self):
+        for neuron in self.neurons:
+            print neuron.weights
